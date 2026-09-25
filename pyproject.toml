@@ -1,0 +1,50 @@
+[project]
+name = "u-tilise"
+version = "0.1.0"
+description = "U-TILISE fork on Python 3.12 with uv"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "h5py>=3.11",
+  "kornia>=0.7",
+  "matplotlib>=3.9",
+  "nestargs>=0.5",
+  "numba>=0.60",  # lib/models/ImageSeriesInterpolator.py
+  "numpy>=2.0",
+  "omegaconf>=2.3",
+  "prodict>=0.8.18",
+  "pyyaml>=6.0",
+  "tensorboard>=2.17",  # torch.utils.tensorboard in lib/trainer.py
+  "torch>=2.6",
+  "torchgeometry>=0.1.2",  # SSIM loss/metric (lib/loss.py, lib/metrics.py)
+  "torchinfo>=1.8",
+  "torchvision>=0.21",
+  "tqdm>=4.66",
+  "wandb>=0.17",  # lib/trainer.py
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.8"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+# Upstream U-TILISE code keeps its own style.
+extend-exclude = ["lib", "toolbox", "run_train.py", "run_eval.py", "demo.ipynb"]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM", "C4", "PTH", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+# cu126 wheels: the PyPI torch wheel targets CUDA 13, which needs a newer NVIDIA driver.
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126" }
+torchvision = { index = "pytorch-cu126" }

@@ -25,15 +25,16 @@ Satellite image time series in the optical and infrared spectrum suffer from fre
 
 ### Dependencies
 This code was developed using Ubuntu 22.04, Python 3.10, PyTorch 1.13, and CUDA 11.6.
-For an optimal experience, we recommend creating a new conda environment and installing the required dependencies with the following commands:
+This fork runs on Python 3.12 with [uv](https://docs.astral.sh/uv);
+torch comes from the CUDA 12.6 index pinned in `pyproject.toml`:
 ```bash
-conda env create -f environment.yml
-conda activate u-tilise
+uv sync
+uv run python run_train.py --help
 ```
 
-After setting up the environment, establish a corresponding IPython kernel named ``, . This is necessary to execute the demo Jupyter Notebook [demo.ipynb](demo.ipynb):
+To run the demo Jupyter Notebook [demo.ipynb](demo.ipynb), register the environment as a kernel:
 ```bash
-ipython kernel install --user --name=u-tilise
+uv run --with ipykernel python -m ipykernel install --user --name=u-tilise
 ```
 
 ### Checkpoints
