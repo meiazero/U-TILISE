@@ -301,3 +301,8 @@ We thank Vivien Sainte Fare Garnot for his efforts in open sourcing and maintain
 [^1]: C. Requena-Mesa, V. Benson, M. Reichstein, J. Runge, and J. Denzler, *EarthNet2021 :A large-scale dataset and challenge for earth surface forecasting as a guided video prediction task*, in IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, 2021, pp.1132–1142.
 [^2]: P. Ebel, Y. Xu, M. Schmitt, and X. X. Zhu, *SEN12MS-CR-TS: A remote-sensing dataset for multimodal multitemporal cloud removal*, IEEE Transactions on Geoscience and Remote Sensing, vol.60, pp. 1-14, 2022.
 [^3]: V.S.F. Garnot and L. Landrieu, *Panoptic segmentation of satellite image time series with convolutional temporal attention networks*, in IEEE/CVF International Conference on Computer Vision (ICCV), 2021, pp.4872–4881.
+
+## Checks before push
+
+Run `git config core.hooksPath .githooks` once per clone. `.githooks/pre-push` then
+refuses a push that fails `uvx ruff format --check .` or `uvx ruff check .`.
