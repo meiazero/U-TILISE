@@ -25,8 +25,11 @@ Satellite image time series in the optical and infrared spectrum suffer from fre
 
 ### Dependencies
 This code was developed using Ubuntu 22.04, Python 3.10, PyTorch 1.13, and CUDA 11.6.
-This fork runs on Python 3.12 with [uv](https://docs.astral.sh/uv);
-torch comes from the CUDA 12.6 index pinned in `pyproject.toml`:
+This fork runs on Python 3.12 with [uv](https://docs.astral.sh/uv). The network is also an
+installable package, `utilise` (`src/utilise/`, symlinks to the unchanged `lib/models/` files),
+which other projects add as a path dependency; as a library it does not pin a torch build, so
+torch comes from PyPI here. `uv sync` also installs the `scripts` group the training and
+evaluation scripts need:
 ```bash
 uv sync
 uv run python run_train.py --help
